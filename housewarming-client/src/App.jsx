@@ -1,8 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import "./index.css";
 
-const API_URL = "http://localhost:8000";
+// const API_URL = "http://localhost:8000";
+const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 const ADMIN_PASSWORD = "lucaslindodemais";
+
+console.log("API_URL =", API_URL);
 
 export default function App() {
   const [items, setItems] = useState([]);

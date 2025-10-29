@@ -11,13 +11,23 @@ from app.routers import health, items, guests
 app = FastAPI(title="Housewarming API", version="1.0.0")
 
 # CORS (Vite em localhost:5173)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["http://localhost:5173"],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
+from settings import ALLOWED_ORIGINS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=ALLOWED_ORIGINS,  # em prod vamos pôr a URL do front
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.on_event("startup")
 def on_startup():
